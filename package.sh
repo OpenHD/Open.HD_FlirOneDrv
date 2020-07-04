@@ -10,6 +10,7 @@ if [[ "${PLATFORM}" == "pi" ]]; then
     PACKAGE_ARCH="armhf"
 fi
 
+apt -y install libusb-1.0-0-dev
 
 PACKAGE_NAME=flirone-driver
 
