@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: armhf-raspbian-buster
+name: armhf-raspbian-bullseye
 platform:
   os: linux
   arch: arm
@@ -21,34 +21,7 @@ steps:
   settings:
       repo: openhd/qopenhd
       dry_run: true
-      dockerfile: Dockerfile-armhf-raspbian-buster
-      build_args_from_env:
-        - CLOUDSMITH_API_KEY
----
-kind: pipeline
-type: docker
-name: arm64-debian-buster
-platform:
-  os: linux
-  arch: arm64
-image_pull_secrets:
-- dockerconfigjson
-steps:
-- name: fetch
-  image: arm64v8/alpine:3.13
-  commands:
-  - apk add git
-  - git fetch --tags
-  - git submodule update --init --recursive --remote
-- name: build
-  image: plugins/docker:linux-arm64
-  environment:
-    CLOUDSMITH_API_KEY:
-      from_secret: CLOUDSMITH_API_KEY
-  settings:
-      repo: openhd/qopenhd
-      dry_run: true
-      dockerfile: Dockerfile-arm64-debian-buster
+      dockerfile: Dockerfile-armhf-raspbian-bullseye
       build_args_from_env:
         - CLOUDSMITH_API_KEY
 ---
